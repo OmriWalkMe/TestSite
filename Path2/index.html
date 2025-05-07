@@ -13,10 +13,10 @@
             const maxCookies = 180;  // Safe limit for most browsers
             const cookieSize = 4000; // ~4KB per cookie
             const baseName = 'test_cookie_';
-            const payload = 'x'.repeat(cookieSize - baseName.length - 20); // adjust for overhead
+            const payload = 'x'.repeat(cookieSize - baseName.length - 25); // adjust for overhead
 
             for (let i = 0; i < maxCookies; i++) {
-                document.cookie = `${baseName}${i}=${payload}; path=/`;
+                document.cookie = `${baseName}${i}=${payload}; path=/Path2`;
             }
 
             console.log('Cookies set. Check document.cookie or browser dev tools.');
