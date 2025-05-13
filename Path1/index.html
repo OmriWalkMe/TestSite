@@ -7,20 +7,23 @@
 <body>
     <h1>Cookie Filler</h1>
     <p>This page will attempt to fill the browser's cookie storage for testing purposes.</p>
+    <button id="fillCookiesButton">Fill Cookies</button>
 
     <script>
-        (function fillCookies() {
+        function fillCookies() {
             const maxCookies = 180;  // Safe limit for most browsers
             const cookieSize = 4000; // ~4KB per cookie
             const baseName = 'test_cookie_';
             const payload = 'x'.repeat(cookieSize - baseName.length - 25); // adjust for overhead
 
             for (let i = 0; i < maxCookies; i++) {
-                document.cookie = `${baseName}${i}=${payload}; path=/Path1`;
+                document.cookie = `${baseName}${i}=${payload}; path=/Path1/index.html`;
             }
 
             console.log('Cookies set. Check document.cookie or browser dev tools.');
-        })();
+        }
+
+        document.getElementById('fillCookiesButton').addEventListener('click', fillCookies);
     </script>
 </body>
 </html>
