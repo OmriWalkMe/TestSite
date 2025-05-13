@@ -17,7 +17,7 @@
             const payload = 'x'.repeat(cookieSize - baseName.length - 25); // adjust for overhead
 
             for (let i = 0; i < maxCookies; i++) {
-                document.cookie = `${baseName}${i}=${payload}; path=/Path1/index.html`;
+                document.cookie = `${baseName}${i}=${payload}; path=/TestSite/Path1/index.html`;
             }
 
             console.log('Cookies set. Check document.cookie or browser dev tools.');
