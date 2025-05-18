@@ -22,6 +22,9 @@
           prompt("What is the cookie size?", defaultCookieSize)
         );
 
+        const defaultPath = document.location.pathname;
+        let cookiePath = prompt("What is the cookie path?", defaultPath);
+
         const maxCookies =
           typeof promptCount === "number" && !isNaN(promptCount)
             ? promptCount
@@ -32,7 +35,7 @@
         ); // adjust for overhead
 
         for (let i = 0; i < maxCookies; i++) {
-          document.cookie = `${baseName}${i}=${payload}; path=/TestSite/Path1/index.html`;
+          document.cookie = `${baseName}${i}=${payload}; path=${cookiePath}`;
         }
 
         console.log("Cookies set. Check document.cookie or browser dev tools.");
