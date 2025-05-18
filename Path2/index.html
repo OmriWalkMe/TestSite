@@ -14,13 +14,18 @@
 
     <script>
       function fillCookies() {
-        let promptCount = parseInt(prompt("How many cookies?", "180"));
+        const defaultCount = 180;
+        let promptCount = parseInt(prompt("How many cookies?", defaultCount));
+
+        const defaultCookieSize = 4000; // ~4KB per cookie
+        let cookieSize = parseInt(
+          prompt("What is the cookie size?", defaultCookieSize)
+        );
 
         const maxCookies =
           typeof promptCount === "number" && !isNaN(promptCount)
             ? promptCount
-            : 180; // Safe limit for most browsers
-        const cookieSize = 4000; // ~4KB per cookie
+            : defaultCount; // Safe limit for most browsers
         const baseName = "test_cookie_";
         const payload = "x".repeat(cookieSize - baseName.length - 25); // adjust for overhead
 
