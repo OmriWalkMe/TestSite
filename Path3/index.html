@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cookie Filler Test</title>
+  </head>
+  <body>
+    <h1>Cookie Filler</h1>
+    <p>
+      This page will attempt to fill the browser's cookie storage for testing
+      purposes.
+    </p>
+    <button id="fillCookiesButton">Fill Cookies</button>
+
+    <script>
+      function fillCookies() {
+        const defaultCount = 180;
+        let promptCount = parseInt(prompt("How many cookies?", defaultCount));
+
+        const defaultCookieSize = 4000; // ~4KB per cookie
+        let cookieSize = parseInt(
+          prompt("What is the cookie size?", defaultCookieSize)
+        );
+
+        const defaultPath = document.location.pathname;
+        let cookiePath = prompt("What is the cookie path?", defaultPath);
+
+        const maxCookies =
+          typeof promptCount === "number" && !isNaN(promptCount)
+            ? promptCount
+            : defaultCount; // Safe limit for most browsers
+        const baseName = "test_cookie_";
+        const payload = "x".repeat(
+          Math.max(1, cookieSize - baseName.length - 25)
+        ); // adjust for overhead
+
+        for (let i = 0; i < maxCookies; i++) {
+          document.cookie = `${baseName}${i}=${payload}; path=${cookiePath}`;
+        }
+
+        console.log("Cookies set. Check document.cookie or browser dev tools.");
+      }
+
+      document
+        .getElementById("fillCookiesButton")
+        .addEventListener("click", fillCookies);
+    </script>
+  </body>
+</html>
